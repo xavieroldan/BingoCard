@@ -12,6 +12,6 @@ namespace BingoCard.Models
         public bool IsMarked { get; set; }
         public int Column { get; set; }
         public int Row { get; set; }
-        public bool IsNotNumber { get; set; }
+        public bool IsBlank { get; set; }
     }
 }
