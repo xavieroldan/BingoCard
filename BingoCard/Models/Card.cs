@@ -11,5 +11,12 @@ namespace BingoCard.Models
         public List<Square> Squares { get; set; }
         public bool IsLine { get; set; }
         public bool IsBingo { get; set; }
+
+        public Card()
+        {
+            this.IsLine = false;
+            this.IsBingo = false;
+            this.Squares = new List<Square>();
+        }
     }
 }

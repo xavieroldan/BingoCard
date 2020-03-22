@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BingoCard.Models
 {
-    public class Square
+    public class Square 
     {
         public int Id { get; set; }
         public int Number { get; set; }

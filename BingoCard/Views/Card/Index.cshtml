@@ -1,8 +1,21 @@
-﻿
+﻿@model List<List<int>>
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "BingoCard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Bingo Card</h2>
+
+@foreach (var a in @Model)
+{
+<li>
+    @foreach (var item in a)
+    {
+        <span>@item</span>;
+    }
+
+</li>
+   
+}
 

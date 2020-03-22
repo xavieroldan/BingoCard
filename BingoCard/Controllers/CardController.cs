@@ -6,38 +6,43 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace BingoCard.Controllers
-{
+{    
     public class CardController : Controller
     {
-        // GET: Card
-        public ActionResult Index()
+        private static Random rnd;
+        static CardController()
         {
-            Square mySquare = new Square();            
+            rnd = new Random();
+        }
+            // GET: Card
+            public ActionResult Index()
+        {                       
             List<List<int>> rows = new List<List<int>>();
+            Card MyCard = new Card();
 
             //Create the 15 numbers of the card
             //Decide the number of squares of the columns
             int countTotalSquares = 0; // max 27
             int countNumberSquares = 0; // max 15  
             int[,] columnMargins = new int[9, 2] { { 1, 9 }, { 10, 19 } ,{ 20, 29 }, { 30, 39 }, { 40, 49 }, { 50, 59 }, { 60, 69 }, { 70, 79 }, { 80, 90 } };
+            
 
             for (int i = 0; i < 9; i++)
             {
                 //Go by the columns
                 int blankSquares = 0;
                 List<int> column = new List<int>();
-                bool isANewNumber = false;                
+                bool isANewNumber = false;
+                List<Square> mySquareList = new List<Square>();
 
                 for (int j = 0; j < 3; j++)
                 {
-                    int number;
+                    int number;                    
                     //Go by the rows
                     do
                     {
                         number = RndGenerator(columnMargins[i, 0], columnMargins[i, 1]);
-
                         //Verify no repeat number in the column
-
                         // Fist row in a column: skip verification
                         if (column.Count < 1) break;
 
@@ -64,6 +69,12 @@ namespace BingoCard.Controllers
                     }
                     while (!isANewNumber);
 
+                    //TODO: add condition  to jump 3 zero at finals rows
+                    //if (countTotalSquares == 24 && (countTotalSquares - countNumberSquares == 13))
+                    //{
+                    //    number = 0;
+                    //    blankSquares++;
+                    //}
 
                     //All numbers exited: number = 0
                     if (countNumberSquares >= 15)
@@ -86,13 +97,13 @@ namespace BingoCard.Controllers
                         //Shorting the possibilities of a new zero if you have one
                         switch (zeroCount)
                         {
+                            //One blank
                             case 1:
-                                if (RndGenerator(1, 9) == 1)
-                                    blank = RndGenerator(0, 1);
-                                break;
-
-                            default:
                                 blank = RndGenerator(0, 1);
+                                break;
+                            //No blank
+                            default:
+                                if (RndGenerator(0, 10) > 5) blank = 0;
                                 break;
                         }
 
@@ -110,21 +121,32 @@ namespace BingoCard.Controllers
                         countNumberSquares++;
                     }    
                    
-                    column.Add(number);
+                    column.Add(number);                    
                     countTotalSquares++;
-                }
-                column.Sort();
-                //TODO: solve the order problem: always 0 is the first position...
-                rows.Add(column);
+
+                }        
+                rows.Add(column);                
             }
 
-            return View();
+            //Model tasks
+            Card myCard = new Card();
+            foreach (var values in rows)
+            {
+                foreach (var item in values)
+                {
+                    Square mySquare = new Square();
+                    if (item == 0) mySquare.IsBlank = true;
+                    else mySquare.Number = item;
+
+                    myCard.Squares.Add(mySquare);
+                }
+            }
+            return View(rows);
         }
 
         private int RndGenerator(int min, int max)
-        {
-            var rand = new Random();
-            return rand.Next(min, max);
+        {            
+            return rnd.Next(min, max);
         }
     }
 }
