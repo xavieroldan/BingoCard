@@ -15,22 +15,21 @@ namespace BingoCard.Controllers
         {
             rnd = new Random();
         }
-        
+
         // GET: Card  
         public ActionResult Index()
         {
             int[,] columnMargins = new int[9, 2] { { 1, 9 }, { 10, 19 }, { 20, 29 }, { 30, 39 }, { 40, 49 }, { 50, 59 }, { 60, 69 }, { 70, 79 }, { 80, 90 } };
             int[] line = new int[9];
-            int[][] columnsArray = new int[9][] { line , line, line, line, line, line, line, line, line} ;
+            int[][] columnsArray = new int[9][] { line, line, line, line, line, line, line, line, line };
             int[][] linesArray = new int[3][] { line, line, line };
             int contColumns = 0;
 
             //Create the 27 numbers of the card
-
             //Columns generation
             for (int i = 0; i < 9; i++)
             {
-                int[] columnNumbers = new int[3]; 
+                int[] columnNumbers = new int[3];
                 columnNumbers = FillCard(3, columnMargins[i, 0], columnMargins[i, 1]);
                 columnsArray[contColumns] = columnNumbers;
                 contColumns++;
@@ -39,24 +38,27 @@ namespace BingoCard.Controllers
             //Lines generation
             for (int i = 0; i < 3; i++)
             {
-                var lineCont = 0;
                 for (int j = 0; j < 9; j++)
                 {
                     line[j] = columnsArray[j][i];
-                }                
+                }
                 linesArray[i] = line;
             }
 
+            //Add the blank spaces
             //Blanks generation
+
+            int[][,] blanksTemplates =
+                new int [][,]
+                { 
+                    new int[,] {{ 0,1,0,0,1,1,0,1,0 },{ 1,0,1,0,1,1,1,0,1 },{ 0,1,1,1,0,1,0,1,0 }},
+                    new int[,] {{ 0,1,0,1,1,0,0,1,1 },{ 0,1,1,0,0,1,1,0,0 },{ 1,1,0,1,1,0,0,1,1 }},
+                    new int[,] {{ 1,0,0,0,1,0,1,0,1 },{ 1,1,0,1,1,1,1,1,0 },{ 1,0,1,0,1,0,1,0,0 }} 
+                };
+                                                                           
 
 
             
-
-
-
-
-
-            //Add the blank spaces
 
             //Count the squares in a row for a line
 
@@ -68,7 +70,7 @@ namespace BingoCard.Controllers
             return View();
         }
 
-        private int RndGenerator(int min, int max)
+        private int RndGenerator(int min, int max) //TODO: delete?
         {            
             return rnd.Next(min, max);
         }
