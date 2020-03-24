@@ -8,7 +8,11 @@ namespace BingoCard.Models
     public class Card
     {
         public int Id { get; set; }
-        public List<Square> Squares { get; set; }
+
+        public List<Square>[] Squares { get; set; }
+        public List<Square> Line1 { get; set; }
+        public List<Square> Line2 { get; set; }
+        public List<Square> Line3 { get; set; }
         public bool IsLine { get; set; }
         public bool IsBingo { get; set; }
 
@@ -16,7 +20,10 @@ namespace BingoCard.Models
         {
             this.IsLine = false;
             this.IsBingo = false;
-            this.Squares = new List<Square>();
+            this.Line1 = new List<Square>();
+            this.Line2 = new List<Square>();
+            this.Line3 = new List<Square>();
+            this.Squares = new List<Square>[] { Line1 , Line2, Line3 };
         }
     }
 }
