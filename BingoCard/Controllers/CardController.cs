@@ -19,18 +19,16 @@ namespace BingoCard.Controllers
         // GET: Card  
         public ActionResult Index()
         {
-            int[,] columnMargins = new int[9, 2] { { 1, 9 }, { 10, 19 }, { 20, 29 }, { 30, 39 }, { 40, 49 }, { 50, 59 }, { 60, 69 }, { 70, 79 }, { 80, 90 } };
-            int[] line = new int[9];
-            int[][] columnsArray = new int[9][] { line, line, line, line, line, line, line, line, line };
-            int[][] linesArray = new int[3][] { line, line, line };
+            int[,] columnMargins = new int[9, 2] { { 1, 9 }, { 10, 19 }, { 20, 29 }, { 30, 39 }, { 40, 49 }, { 50, 59 }, { 60, 69 }, { 70, 79 }, { 80, 90 } };            
+            int[][] columnsArray = new int[9][];
+            int[][] linesArray = new int[3][];
             int contColumns = 0;
 
             //Create the 27 numbers of the card
             //Columns generation
             for (int i = 0; i < 9; i++)
-            {
-                int[] columnNumbers = new int[3];
-                columnNumbers = FillCard(3, columnMargins[i, 0], columnMargins[i, 1]);
+            {              
+                var columnNumbers = FillCard(3, columnMargins[i, 0], columnMargins[i, 1]);
                 columnsArray[contColumns] = columnNumbers;
                 contColumns++;
             }
@@ -38,15 +36,16 @@ namespace BingoCard.Controllers
             //Lines generation
             for (int i = 0; i < 3; i++)
             {
+                int[] line = new int[9];
                 for (int j = 0; j < 9; j++)
-                {
+                {                    
                     line[j] = columnsArray[j][i];
                 }
                 linesArray[i] = line;
             }
 
             //Add the blank spaces
-            //Blanks generation
+            //Blanks template generation 
 
             int[][,] blanksTemplates =
                 new int [][,]
@@ -54,7 +53,19 @@ namespace BingoCard.Controllers
                     new int[,] {{ 0,1,0,0,1,1,0,1,0 },{ 1,0,1,0,1,1,1,0,1 },{ 0,1,1,1,0,1,0,1,0 }},
                     new int[,] {{ 0,1,0,1,1,0,0,1,1 },{ 0,1,1,0,0,1,1,0,0 },{ 1,1,0,1,1,0,0,1,1 }},
                     new int[,] {{ 1,0,0,0,1,0,1,0,1 },{ 1,1,0,1,1,1,1,1,0 },{ 1,0,1,0,1,0,1,0,0 }} 
-                };
+                };            
+
+            //Try one random
+            var templateId = rnd.Next(0, blanksTemplates.Length - 1);
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    linesArray[i][j] *= blanksTemplates[templateId][i, j];
+                }
+            }
+
                                                                            
 
 
