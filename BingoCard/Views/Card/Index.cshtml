@@ -1,17 +1,22 @@
-﻿
-
-@{
+﻿@{
     ViewBag.Title = "BingoCard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>Bingo Card</h2>
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+        <div class="row">
+            @foreach (var number in item)
+            {
+                <a class="btn btn-default" href="#" role="button">
+                    @number
+                </a>
+            }
 
-
-{
-<li>
-   
-</li>
-   
-}
+        </div> 
+            }
+    </div>
+    
 
