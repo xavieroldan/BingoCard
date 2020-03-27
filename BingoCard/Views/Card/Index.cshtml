@@ -4,19 +4,20 @@
 }
 @* Body Card *@
 <h1></h1>
-<div class="container-fluid">
-    <div class="d-flex flex-sm-row">
+<div class="row">
+    <div class="col-md-12">
         @foreach (var item in Model)
         {
-        <div class="row">
-            @foreach (var number in item)
-            {
-                <a class="button buttonGrey" href="#" role="button">
-                    @number
-                </a>
-            }
-        </div> 
-            }
+            <div class="btn-group btn-group-justified">
+                @foreach (int number in item)
+                {
+
+                    var square = string.Empty;
+                    square = (number == 0) ? "" : number.ToString();
+                    <a class="btn btn-default btn-lg" style="display: width: 100px; height: 100px;" href="#" role="button">@square</a>
+                }
+            </div>
+        }
     </div>
 </div>
     
