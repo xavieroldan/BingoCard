@@ -2,21 +2,22 @@
     ViewBag.Title = "BingoCard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Bingo Card</h2>
+@* Body Card *@
+<h1></h1>
 <div class="container-fluid">
-    <div class="row">
+    <div class="d-flex flex-sm-row">
         @foreach (var item in Model)
         {
         <div class="row">
             @foreach (var number in item)
             {
-                <a class="btn btn-default" href="#" role="button">
+                <a class="button buttonGrey" href="#" role="button">
                     @number
                 </a>
             }
-
         </div> 
             }
     </div>
+</div>
     
 

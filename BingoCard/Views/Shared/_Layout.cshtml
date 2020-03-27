@@ -6,6 +6,37 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>        
+        /* Square buttons*/
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: 2px solid #008CBA;
+            border-radius: 8px;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 5%;            
+        }
+
+        .buttonBlue {
+            background-color: #008CBA;
+        }
+        .buttonRed {
+            background-color: #f44336;
+        }
+        .buttonGrey {
+            background-color: #e7e7e7;
+            color: black;
+        }
+        .buttonBlack {
+            background-color: #555555;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -16,11 +47,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink( @System.Configuration.ConfigurationManager.AppSettings["AppName"], "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink( @System.Configuration.ConfigurationManager.AppSettings["AppName"], "Index", "Card", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("New Card", "Index", "Card")</li>
+                    @*<li>@Html.ActionLink("New Card", "Index", "Card")</li>*@
 
                 </ul>
             </div>
@@ -28,9 +59,9 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        @*<hr />*@
         <footer>
-            <p>&copy; @DateTime.Now.Year -  @System.Configuration.ConfigurationManager.AppSettings["AppName"]</p>
+            @*<p>&copy; @DateTime.Now.Year -  @System.Configuration.ConfigurationManager.AppSettings["AppName"]</p>*@
         </footer>
     </div>
 
