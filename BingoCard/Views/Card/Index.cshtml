@@ -10,11 +10,10 @@
         {
             <div class="btn-group btn-group-justified">
                 @foreach (int number in item)
-                {
-
-                    var square = string.Empty;
-                    square = (number == 0) ? "" : number.ToString();
-                    <a class="btn btn-default btn-lg" style="display: width: 100px; height: 100px;" href="#" role="button">@square</a>
+                {                   
+                    var square = (number == 0) ? "" : number.ToString();
+                    var color = (number == 0) ? "btn-primary" : "btn-default";
+                    <a class="btn @color btn-lg" style="font-size : 300%; width: 100px; height: 100px;" href="#" role="button">@square</a>
                 }
             </div>
         }
