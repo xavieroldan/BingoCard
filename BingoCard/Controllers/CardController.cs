@@ -65,11 +65,34 @@ namespace BingoCard.Controllers
                     linesArray[i][j] *= blanksTemplates[templateId][i, j];
                 }
             }
+
             //Count the squares in a row for a line
             //Return the card  
+            //Return an array
             var output = linesArray;
 
-            Thread.Sleep(1000);
+            //Return an object Card
+
+            Card myCard = new Card();
+
+            for (int i = 0; i < 3; i++)
+            {
+                
+                for (int j = 0; j < 9; j++)
+                {
+                    Square mySquare = new Square();
+                    mySquare.Row = i;
+                    mySquare.Column = j;
+                    int number = linesArray[i][j];
+                    if (number == 0){ mySquare.IsBlank = true; }
+                    else
+                    {
+                        mySquare.IsBlank = false;
+                        mySquare.Number = number;
+                    }
+                    myCard.Lines[i,j] = mySquare;
+                }
+            }            
             return View(output);
         }
 
@@ -109,5 +132,9 @@ namespace BingoCard.Controllers
             return listNum;
         }
 
+        public string NumberToogle (string id)
+        {            
+            return (string.IsNullOrEmpty(id)) ? "null" :id ;
+        }
     }
 }

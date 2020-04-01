@@ -7,7 +7,13 @@ namespace BingoCard.Models
 {
     public class Square 
     {
-        public int Id { get; set; }
+        public Square()
+        {
+            this.Id = Guid.NewGuid();
+            this.IsMarked = false;
+        }
+        private Guid Id { get; set; }
+        public Guid cardId { get; set; }
         public int Number { get; set; }
         public bool IsMarked { get; set; }
         public int Column { get; set; }

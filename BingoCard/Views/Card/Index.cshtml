@@ -6,18 +6,27 @@
 <h1></h1>
 <div class="row">
     <div class="col-md-12">
+        @{ 
+            int num = 0;
+        } 
         @foreach (var item in Model)
         {
             <div class="btn-group btn-group-justified">
+                @*@for (int i = 0; i < 9; i++)
+                    {
+                        var square = (item[i] == 0) ? "" : item[i].ToString();
+                        var color = (item[i] == 0) ? "btn-primary" : "btn-default";
+                        <a class="btn @color btn-lg" style="font-size : 300%; width: 100px; height: 100px;" href="@Url.Action("someaction","somecontroller",i)" role="button">@square</a>
+                    }*@
+
                 @foreach (int number in item)
                 {                   
                     var square = (number == 0) ? "" : number.ToString();
                     var color = (number == 0) ? "btn-primary" : "btn-default";
-                    <a class="btn @color btn-lg" style="font-size : 300%; width: 100px; height: 100px;" href="#" role="button">@square</a>
+                    @*<a class="btn @color btn-lg" style="font-size : 300%; width: 100px; height: 100px;" href="@Url.Action("NumberToogle","Card", new { id = square })" role="button">@square</a>*@
+                    <a class="btn @color btn-lg" style="font-size : 300%; width: 100px; height: 100px; href="#" role="button">@square</a>
                 }
             </div>
         }
     </div>
 </div>
-    
-
