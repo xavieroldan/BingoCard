@@ -69,7 +69,7 @@ namespace BingoCard.Controllers
             //Count the squares in a row for a line
             //Return the card  
             //Return an array
-            var output = linesArray;
+            //var output = linesArray;
 
             //Return an object Card
 
@@ -92,7 +92,9 @@ namespace BingoCard.Controllers
                     }
                     myCard.Lines[i,j] = mySquare;
                 }
-            }            
+            }
+
+            var output = myCard;
             return View(output);
         }
 

@@ -24,7 +24,7 @@ namespace BingoCard.Models
             //this.Line2 = new Square[9];
             //this.Line3 = new Square[9];
             this.Squares = new List<Square>();
-            this.Lines = new Square[,]
+            this.Lines = new Square[3,9]
                         {
                             { new Square(), new Square(), new Square(), new Square(), new Square(), new Square(), new Square(), new Square(), new Square() },
                             { new Square(), new Square(), new Square(), new Square(), new Square(), new Square(), new Square(), new Square(), new Square() },

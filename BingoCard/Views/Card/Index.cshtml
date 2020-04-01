@@ -1,4 +1,6 @@
-﻿@{
+﻿@model BingoCard.Models.Card
+
+@{
     ViewBag.Title = "BingoCard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,26 +8,17 @@
 <h1></h1>
 <div class="row">
     <div class="col-md-12">
-        @{ 
-            int num = 0;
-        } 
-        @foreach (var item in Model)
+        @for (int i = 0; i < 3; i++) 
         {
+            
             <div class="btn-group btn-group-justified">
-                @*@for (int i = 0; i < 9; i++)
-                    {
-                        var square = (item[i] == 0) ? "" : item[i].ToString();
-                        var color = (item[i] == 0) ? "btn-primary" : "btn-default";
-                        <a class="btn @color btn-lg" style="font-size : 300%; width: 100px; height: 100px;" href="@Url.Action("someaction","somecontroller",i)" role="button">@square</a>
-                    }*@
-
-                @foreach (int number in item)
-                {                   
-                    var square = (number == 0) ? "" : number.ToString();
-                    var color = (number == 0) ? "btn-primary" : "btn-default";
-                    @*<a class="btn @color btn-lg" style="font-size : 300%; width: 100px; height: 100px;" href="@Url.Action("NumberToogle","Card", new { id = square })" role="button">@square</a>*@
-                    <a class="btn @color btn-lg" style="font-size : 300%; width: 100px; height: 100px; href="#" role="button">@square</a>
-                }
+                @for (int j = 0; j < 9; j++)
+                {                
+                    var square = (@Model.Lines[i,j].Number == 0) ? "" : @Model.Lines[i,j].Number.ToString();
+                    var color = (@Model.Lines[i,j].Number == 0) ? "btn-primary" : "btn-default";
+                <a class="btn @color btn-lg" style="font-size : 300%; width: 100px; height: 100px; href="#" role="button">@square</a>
+        }
+            @*<a class="btn @color btn-lg" style="font-size : 300%; width: 100px; height: 100px;" href="@Url.Action("NumberToogle","Card", new { id = square })" role="button">@square</a>*@
             </div>
         }
     </div>
