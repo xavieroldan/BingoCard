@@ -13,9 +13,13 @@
         <div class="btn-group btn-group-justified">
             @for (int j = 0; j < 9; j++)
             {
-                var square = (@Model.Lines[i, j].Number == 0) ? "" : @Model.Lines[i, j].Number.ToString();
+                var square = (@Model.Lines[i, j].Number == 0) ? " " : @Model.Lines[i, j].Number.ToString();
                 var color = (@Model.Lines[i, j].Number == 0) ? "btn-primary" : "btn-default";
-                <a class="btn @color btn-lg" style="font-size : 300%; width: 100px; height: 100px; href="#" role="button">@square</a>
+            <a class="btn @color btn-lg" style="font-size : 300%; width: 100px; height: 100px; href="#" role="button">
+                <div>
+                    @Html.ActionLink(square, "NumberToogle", new { number = square, card = @Model });
+                </div>
+            </a>
             }
             @*<a class="btn @color btn-lg" style="font-size : 300%; width: 100px; height: 100px;" href="@Url.Action("NumberToogle","Card", new { id = square })" role="button">@square</a>*@
         </div>

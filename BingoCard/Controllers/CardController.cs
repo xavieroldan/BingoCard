@@ -98,12 +98,6 @@ namespace BingoCard.Controllers
             return View(output);
         }
 
-        private int RndGenerator(int min, int max) //TODO: delete?
-        {            
-            return rnd.Next(min, max);
-        }
-
-
         private int[] FillCard(int squares, int min = 1, int max = 90)
         {
             int[] listNum = new int[squares];
@@ -134,9 +128,14 @@ namespace BingoCard.Controllers
             return listNum;
         }
 
-        public string NumberToogle (string id)
-        {            
-            return (string.IsNullOrEmpty(id)) ? "null" :id ;
+  
+        public ActionResult NumberToogle (string number, Card card)
+        {          
+            
+            
+            
+            
+            return View(card);
         }
     }
 }
