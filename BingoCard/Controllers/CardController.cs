@@ -50,14 +50,15 @@ namespace BingoCard.Controllers
             int[][,] blanksTemplates =
                 new int [][,]
                 { 
-                    new int[,] {{ 0,1,0,0,1,1,0,1,0 },{ 1,0,1,0,1,1,1,0,1 },{ 0,1,1,1,0,1,0,1,0 }},
-                    new int[,] {{ 0,1,0,1,1,0,0,1,1 },{ 0,1,1,0,0,1,1,0,0 },{ 1,1,0,1,1,0,0,1,1 }},
-                    new int[,] {{ 1,0,0,0,1,0,1,0,1 },{ 1,1,0,1,1,1,1,1,0 },{ 1,0,1,0,1,0,1,0,0 }} 
+                    new int[,] {{ 0, 1, 0, 0, 1, 1, 0, 1, 1 },{ 0, 1, 0, 0, 1, 1, 0, 1, 1 },{ 1, 1, 1, 1, 0, 1, 0, 0, 0 } },
+                    new int[,] {{ 0, 1, 0, 1, 1, 0, 0, 1, 1 },{ 0, 1, 1, 0, 0, 1, 1, 0, 1 },{ 1, 1, 0, 1, 1, 0, 0, 1, 0 } },
+                    new int[,] {{ 1, 0, 0, 0, 1, 1, 1, 0, 1 },{ 1, 1, 0, 1, 1, 0, 0, 1, 0 },{ 1, 0, 1, 0, 1, 0, 1, 0, 1 } } 
                 };              
 
             //Try one random
             var templateId = rnd.Next(0, blanksTemplates.Length - 1);
 
+            //Apply changes
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 9; j++)
@@ -129,7 +130,7 @@ namespace BingoCard.Controllers
         }
 
   
-        public ActionResult NumberToogle (string number, Card card)
+        public ActionResult NumberToogle (int number, Card card)
         {          
             
             
