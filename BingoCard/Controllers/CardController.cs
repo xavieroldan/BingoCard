@@ -80,20 +80,6 @@ namespace BingoCard.Controllers
                     linesArray[order[k]] [j] *= blanksTemplates[templateId][order[k], j];
                 }
             }
-            
-
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    for (int j = 0; j < 9; j++)
-            //    {
-            //        linesArray[i][j] *= blanksTemplates[templateId][i, j];
-            //    }
-            //}
-
-            //Count the squares in a row for a line
-            //Return the card  
-            //Return an array
-            //var output = linesArray;
 
             //Return an object Card
 
@@ -150,16 +136,6 @@ namespace BingoCard.Controllers
                 isExiting = false;
             }
             return listNum;
-        }
-
-  
-        public ActionResult NumberToogle (int number, Card card)
-        {          
-            
-            
-            
-            
-            return View(card);
         }
     }
 }
