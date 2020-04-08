@@ -16,9 +16,8 @@
     {
         //Change the color
         document.getElementById(number).classList.toggle('btnMarked');
-        //Find the Line and square in the array
-        //alert("Looking for " + number);
 
+        //Find the Line and square in the array
         var isFoundSquare = false;
         var isExiting = false;
         var isNotInLine = false;
@@ -88,7 +87,6 @@
                 card.IsLine = true;
                 //Show the alert msg
                 $("#line-popup").modal();
-                //alert("L I N E A ");
             }
         }
     }
@@ -133,7 +131,7 @@
         border-color: rgba(0,0,0,0.5) !important;
     }
 </style>
-<input type="hidden" id="modelSend" value="@Model" />
+<!-- Card body -->
 <h1></h1>
 <div class="row">
     <div class="col-md-12">
@@ -152,11 +150,9 @@
     </div>
 </div>
 
+<!-- Line detection PopUp -->
 <div class="container">
-    <!-- Trigger the modal with a button -->
-    @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#line-popup">Open Modal</button>*@
 
-    <!-- Line detection PopUp -->
     <div class="modal" id="line-popup" role="dialog">
         <div class="modal-dialog modal-xl">
             <!-- Modal content-->
@@ -164,7 +160,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h1 class="modal-title text-center text-danger">!!!  L I N E A  !!!</h1>
-                </div>               
+                </div>
             </div>
         </div>
     </div>
