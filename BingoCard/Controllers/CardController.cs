@@ -10,7 +10,7 @@ namespace BingoCard.Controllers
 {    
     public class CardController : Controller
     {
-        private static Random rnd;
+        private static readonly Random rnd;
         static CardController()
         {
             rnd = new Random();
@@ -90,9 +90,11 @@ namespace BingoCard.Controllers
                 
                 for (int j = 0; j < 9; j++)
                 {
-                    Square mySquare = new Square();
-                    mySquare.Row = i;
-                    mySquare.Column = j;
+                    Square mySquare = new Square
+                    {
+                        Row = i,
+                        Column = j
+                    };
                     int number = linesArray[i][j];
                     if (number == 0){ mySquare.IsBlank = true; }
                     else

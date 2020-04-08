@@ -7,7 +7,7 @@ namespace BingoCard.Models
 {
     public class Card
     {
-        public Guid Id { get; }
+        public Guid Id { get; set; }
         public Guid PlayerId { get; set; }
         public Square [,] Lines { get; set; }
         public bool IsLine { get; set; }

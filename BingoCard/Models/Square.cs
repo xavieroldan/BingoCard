@@ -12,7 +12,7 @@ namespace BingoCard.Models
             this.Id = Guid.NewGuid();
             this.IsMarked = false;
         }
-        private Guid Id { get; set; }
+        public Guid Id { get; set; }
         public Guid CardId { get; set; }
         public int Number { get; set; }
         public bool IsMarked { get; set; }
