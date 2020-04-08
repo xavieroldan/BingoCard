@@ -139,5 +139,11 @@ namespace BingoCard.Controllers
             }
             return listNum;
         }
+
+        [HttpPost]
+        public ActionResult PostCard(Card card)
+        {
+            return Json(new { url = "URL" });
+        }
     }
 }
