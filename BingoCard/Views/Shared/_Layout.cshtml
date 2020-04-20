@@ -16,12 +16,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink( @System.Configuration.ConfigurationManager.AppSettings["AppName"], "Index", "Card", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink( @System.Configuration.ConfigurationManager.AppSettings["AppName"], "Index", "Card", new { area = "" }, new { @class = "navbar-brand" })*@
+                @Html.ActionLink("New Card", "Index", "Card", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                </ul>
+                    <li>@Html.ActionLink("Start Menu", "Index", "Home")</li>
             </div>
         </div>
     </div>
