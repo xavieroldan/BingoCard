@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -16,6 +17,9 @@ namespace BingoCard.Models
         }
 
         public Guid Id { get; set; }
+        [StringLength(60, MinimumLength = 3)]
+        [Required]
+
         public string Name { get; set; }
         public int BingoCount { get; set; }
         public int LineCount { get; set; }

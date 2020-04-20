@@ -1,0 +1,59 @@
+﻿@model BingoCard.Models.Player
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Player</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BingoCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BingoCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LineCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LineCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvatarID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvatarID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsEnabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsEnabled)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

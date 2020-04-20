@@ -15,13 +15,15 @@ namespace BingoCard.DataAccess
         {
         }
 
-        public DbSet< Player> Players { get; set; }
+        public DbSet<Player> Players { get; set; }
         public DbSet<Card> Cards { get; set; }
         public DbSet<Square> Squares { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            Database.SetInitializer<BingoCardDBContext>(null);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
