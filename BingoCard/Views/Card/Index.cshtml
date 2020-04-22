@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <script>
+<script>
     var card;
     var markedSquares;
     var modalMsg = null;
@@ -120,7 +120,7 @@
     }
 
     function postCard() {
-        //TODO: POST Controller call to set the model status        
+        //TODO: POST Controller call to set the model status
         var data = JSON.stringify(card) // Investigat ethe change form here
 
         @*$.ajax({
@@ -139,7 +139,7 @@
 
 
 
-    </script>
+</script>
 <style>
     /*Square marked*/
     .btnMarked {
@@ -181,7 +181,7 @@
     }
 </style>
 <!-- Card body -->
-<h1></h1>
+<h1>@Model.PlayerId</h1>
 <div class="row">
     <div class="col-md-12">
         @for (int i = 0; i < 3; i++)
@@ -200,8 +200,8 @@
 </div>
 
 @*<div>
-    <button class="btn btn-primary" type="submit" onclick="postCard()">POST Card</button>
-</div>*@
+        <button class="btn btn-primary" type="submit" onclick="postCard()">POST Card</button>
+    </div>*@
 
 <!-- Line detection PopUp -->
 <div class="container">
