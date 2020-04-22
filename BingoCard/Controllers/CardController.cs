@@ -1,7 +1,9 @@
-﻿using BingoCard.Models;
+﻿using BingoCard.DataAccess;
+using BingoCard.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
@@ -10,6 +12,8 @@ namespace BingoCard.Controllers
 {    
     public class CardController : Controller
     {
+        private BingoCardDBContext db = new BingoCardDBContext();
+
         private static readonly Random rnd;
         static CardController()
         {
@@ -144,6 +148,20 @@ namespace BingoCard.Controllers
         public ActionResult PostCard(Card card)
         {
             return Json(new { url = "URL" });
+        }
+
+        public ActionResult PlayerCard(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Player player = db.Players.Find(id);
+            if (player == null)
+            {
+                return HttpNotFound();
+            }
+            return View(player);
         }
     }
 }

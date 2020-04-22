@@ -5,11 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
+<h2>Details Player</h2>
+<div class="row">
+    <div class="col-md-12">
+        <p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("PlayerCard", "Card", new { id = Model.Id })">Play Bingo!!</a></p>
+    </div>
+</div>
 <div>
-    <h4>Player</h4>
     <hr />
+    <div class="row">
+        <div class="col-md-12">
+            @{var avatarURL = "https://api.adorable.io/avatars/80/" + Model.Name;}
+            <p><img src=@avatarURL /></p>
+        </div>
+    </div>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -35,7 +44,7 @@
             @Html.DisplayFor(model => model.LineCount)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.AvatarID)
         </dt>
 
@@ -49,11 +58,16 @@
 
         <dd>
             @Html.DisplayFor(model => model.IsEnabled)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        @*<p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("PlayerCard", "Card")">Play Game</a></p>*@
+    </div>
+</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |   
     @Html.ActionLink("Back to List", "Index")
 </p>
