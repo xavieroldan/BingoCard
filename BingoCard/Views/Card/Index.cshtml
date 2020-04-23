@@ -181,6 +181,9 @@
     }
 </style>
 <!-- Card body -->
+@*@{var player = @Model.PlayerId;
+    var playerText;
+    if (player = Guid.Empty) playerText = null;*@
 <h1>@Model.PlayerId</h1>
 <div class="row">
     <div class="col-md-12">

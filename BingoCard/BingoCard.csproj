@@ -318,7 +318,7 @@
           <IISUrl>http://localhost:54194/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>True</UseCustomServer>
-          <CustomServerUrl>http://localhost:8089/</CustomServerUrl>
+          <CustomServerUrl>http://localhost:8099/</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
