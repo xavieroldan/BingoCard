@@ -35,7 +35,7 @@ namespace BingoCard.Controllers
             Card myCard = CardHelper.CreateCard();
 
             //Add the player Id
-            myCard.PlayerId = player.Id;           
+            myCard.Player = player;           
 
             return View(myCard);
         }
