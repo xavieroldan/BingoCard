@@ -181,11 +181,17 @@
     }
 </style>
 <!-- Card body -->
-@{var avatarURL = "https://api.adorable.io/avatars/60/" + @Model.Player.Name; }
-<h1>
-    <img src=@avatarURL/>
-    @Model.Player.Name    
-</h1>
+<div class="row">
+    <div class="col-md-12">
+        @{var avatarURL = "https://api.adorable.io/avatars/70/" + @Model.Player.Name; }
+        <h2>
+            <img src=@avatarURL />            
+            <span>@Model.Player.Name</span>
+            <span class="alert alert-info">Bingos: @Model.Player.BingoCount</span>
+            <span class="alert alert-info">Lines: @Model.Player.LineCount</span>
+        </h2>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         @for (int i = 0; i < 3; i++)
@@ -203,36 +209,36 @@
     </div>
 </div>
 
-@*<div>
-        <button class="btn btn-primary" type="submit" onclick="postCard()">POST Card</button>
-    </div>*@
+    @*<div>
+            <button class="btn btn-primary" type="submit" onclick="postCard()">POST Card</button>
+        </div>*@
 
-<!-- Line detection PopUp -->
-<div class="container">
-    <div class="modal" id="line-popup" role="dialog">
-        <div class="modal-dialog modal-xl">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h1 class="modal-title text-center text-danger">!!!  L I N E A  !!!</h1>
+    <!-- Line detection PopUp -->
+    <div class="container">
+        <div class="modal" id="line-popup" role="dialog">
+            <div class="modal-dialog modal-xl">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h1 class="modal-title text-center text-danger">!!!  L I N E A  !!!</h1>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Bingo detection PopUp -->
-<div class="container">
-    <div class="modal" id="bingo-popup" role="dialog">
-        <div class="modal-dialog modal-xl">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h1 class="modal-title text-center text-danger">!!!  B I N G O  !!!</h1>
+    <!-- Bingo detection PopUp -->
+    <div class="container">
+        <div class="modal" id="bingo-popup" role="dialog">
+            <div class="modal-dialog modal-xl">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h1 class="modal-title text-center text-danger">!!!  B I N G O  !!!</h1>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
