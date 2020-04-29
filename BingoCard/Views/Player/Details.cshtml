@@ -4,71 +4,36 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Details Player</h2>
+<h1></h1>
 <div class="row">
     <div class="col-md-12">
         @*<p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("PlayerCard", "Card", new { id = Model.Id })">Play Bingo!!</a></p>*@
         <p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("PlayerCard", "Card", new { id = Model.Id })">Play Bingo!!</a></p>
     </div>
 </div>
-<div>
-    <hr />
-    <div class="row">
-        <div class="col-md-12">
-            @{var avatarURL = "https://api.adorable.io/avatars/80/" + Model.Name;}
-            <p><img src=@avatarURL /></p>
-        </div>
-    </div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BingoCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BingoCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LineCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LineCount)
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.AvatarID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AvatarID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsEnabled)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsEnabled)
-        </dd>*@
-
-    </dl>
-</div>
+<hr />
 <div class="row">
-    <div class="col-md-12">
-        @*<p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("PlayerCard", "Card")">Play Game</a></p>*@
+    <div class="col-xs-6" align="center">
+        @{var avatarURL = "https://api.adorable.io/avatars/150/" + Model.Name;}
+        <img src=@avatarURL />
+       
+    </div>
+    <div class="col-xs-6">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <h3>@Html.DisplayFor(model => model.Name)</h3>
+            </div>
+        </div>
+        <h4>Lines: @Html.DisplayFor(model => model.LineCount)</h4>
+        <h4>Bingos: @Html.DisplayFor(model => model.BingoCount)</h4>
+    </div>
+</div>  
+<hr />
+<div class="row">
+    <div class="col-xs-6">
+        <p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("Edit", "Player", new { id = Model.Id })">Edit</a></p>
+    </div>
+    <div class="col-xs-6">
+        <p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("Index", "Player", new { id = Model.Id })">Back to List</a></p>
     </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |   
-    @Html.ActionLink("Back to List", "Index")
-</p>
