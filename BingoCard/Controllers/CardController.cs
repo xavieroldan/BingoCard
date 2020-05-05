@@ -2,6 +2,7 @@
 using BingoCard.Helpers;
 using BingoCard.Models;
 using System;
+using System.Data.Entity;
 using System.Net;
 using System.Web.Mvc;
 
@@ -55,6 +56,46 @@ namespace BingoCard.Controllers
             if (player == null)
             {
                 return HttpNotFound();
+            }
+            return View(player);
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult EditRoom([Bind(Include = "Id,Name,BingoCount,LineCount,AvatarID,IsEnabled,RoomName")] Player player)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(player).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(player);
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult EditRoom(Guid? id, string roomName)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Player player = db.Players.Find(id);
+            if (player == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                player.RoomName = roomName;
+            }
+            if (ModelState.IsValid)
+            {
+                db.Entry(player).State = EntityState.Modified;
+                db.SaveChanges();
+                if(!string.IsNullOrEmpty(player.RoomName)) return RedirectToAction("PlayerCard", new { id = player.Id});
+                return RedirectToAction("RoomSelection");
             }
             return View(player);
         }

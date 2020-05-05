@@ -7,9 +7,15 @@
 <h1></h1>
 <div class="row">
     <div class="col-md-12">
-        @*<p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("PlayerCard", "Card", new { id = Model.Id })">Play Bingo!!</a></p>*@
-        <p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("PlayerCard", "Card", new { id = Model.Id })">Play Bingo!!</a></p>
-        <p><a class="btn btn-danger btn-lg center-block" href="@Url.Action("RoomSelection", "Card", new { id = Model.Id })">Change Room</a></p>
+        @if (!String.IsNullOrEmpty(Model.RoomName))
+        {
+            <p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("PlayerCard", "Card", new { id = Model.Id })">Play Bingo!!</a></p>
+            <p><a class="btn btn-danger btn-lg center-block" href="@Url.Action("RoomSelection", "Card", new { id = Model.Id })">Change Room</a></p>
+        }
+        else
+        {
+            <p><a class="btn btn-danger btn-lg center-block" href="@Url.Action("RoomSelection", "Card", new { id = Model.Id })">Select Room</a></p>
+        }
     </div>
 </div>
 <hr />

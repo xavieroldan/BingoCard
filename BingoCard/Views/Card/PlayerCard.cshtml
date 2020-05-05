@@ -185,8 +185,9 @@
     <div class="col-md-12">
         @{var avatarURL = "https://api.adorable.io/avatars/70/" + @Model.Player.Name; }
         <h2>
-            <img src=@avatarURL />            
+            <img src=@avatarURL />
             <span>@Model.Player.Name</span>
+            <span class="alert alert-warning">Room @Model.Player.RoomName</span>
             <span class="alert alert-info">Bingos: @Model.Player.BingoCount</span>
             <span class="alert alert-info">Lines: @Model.Player.LineCount</span>
         </h2>

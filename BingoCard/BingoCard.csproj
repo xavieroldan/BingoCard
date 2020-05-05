@@ -288,6 +288,7 @@
     <Content Include="Views\Card\PlayerCard.cshtml" />
     <Content Include="Views\Shared\_LayoutPlayer.cshtml" />
     <Content Include="Views\Card\RoomSelection.cshtml" />
+    <Content Include="Views\Card\EditRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
