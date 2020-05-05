@@ -43,6 +43,20 @@ namespace BingoCard.Controllers
         public ActionResult PostCard(Card card)
         {
             return Json(new { url = "URL" });
-        }       
+        }
+
+        public ActionResult RoomSelection(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Player player = db.Players.Find(id);
+            if (player == null)
+            {
+                return HttpNotFound();
+            }
+            return View(player);
+        }
     }
 }

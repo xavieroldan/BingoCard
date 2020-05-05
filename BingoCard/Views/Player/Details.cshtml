@@ -9,6 +9,7 @@
     <div class="col-md-12">
         @*<p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("PlayerCard", "Card", new { id = Model.Id })">Play Bingo!!</a></p>*@
         <p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("PlayerCard", "Card", new { id = Model.Id })">Play Bingo!!</a></p>
+        <p><a class="btn btn-danger btn-lg center-block" href="@Url.Action("RoomSelection", "Card", new { id = Model.Id })">Change Room</a></p>
     </div>
 </div>
 <hr />
@@ -26,6 +27,7 @@
         </div>
         <h4>Lines: @Html.DisplayFor(model => model.LineCount)</h4>
         <h4>Bingos: @Html.DisplayFor(model => model.BingoCount)</h4>
+        <h4>Room: @Html.DisplayFor(model => model.RoomName)</h4>
     </div>
 </div>  
 <hr />

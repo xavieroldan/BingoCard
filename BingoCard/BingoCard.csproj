@@ -140,6 +140,7 @@
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\DAOCard.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Room.cs" />
     <Compile Include="Models\Square.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -286,6 +287,7 @@
     <Content Include="Views\Player\Index.cshtml" />
     <Content Include="Views\Card\PlayerCard.cshtml" />
     <Content Include="Views\Shared\_LayoutPlayer.cshtml" />
+    <Content Include="Views\Card\RoomSelection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,6 +18,7 @@ namespace BingoCard.DataAccess
         public DbSet<Player> Players { get; set; }
         public DbSet<Card> Cards { get; set; }
         public DbSet<Square> Squares { get; set; }
+        public DbSet<Room> Rooms { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
