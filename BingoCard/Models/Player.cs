@@ -17,7 +17,7 @@ namespace BingoCard.Models
         }
 
         public Guid Id { get; set; }
-        [StringLength(60, MinimumLength = 3)]
+        [StringLength(15, MinimumLength = 3)]
         [Required]
 
         public string Name { get; set; }

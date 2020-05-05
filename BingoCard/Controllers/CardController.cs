@@ -75,7 +75,7 @@ namespace BingoCard.Controllers
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult EditRoom(Guid? id, string roomName)
+        public ActionResult EditRoom(Guid? id, string roomName="")
         {
             if (id == null)
             {
@@ -95,7 +95,7 @@ namespace BingoCard.Controllers
                 db.Entry(player).State = EntityState.Modified;
                 db.SaveChanges();
                 if(!string.IsNullOrEmpty(player.RoomName)) return RedirectToAction("PlayerCard", new { id = player.Id});
-                return RedirectToAction("RoomSelection");
+                return RedirectToAction("RoomSelection", new { id = player.Id});
             }
             return View(player);
         }
