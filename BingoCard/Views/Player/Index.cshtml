@@ -11,12 +11,14 @@
     <div class="col-md-12">
         <p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("Create", "Player")">Create new player</a></p>
     </div>
+    <div class="col-md-12">
+        <p><a class="btn btn-info btn-lg center-block" href="@Url.Action("Index", "Card")">Play Anonymous</a></p>
+    </div>
 </div>
 
-
 @*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 <table class="table">
     <tr>
         <th>SELECT ONE</th>
@@ -32,44 +34,45 @@
             Lines
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.AvatarID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsEnabled)
-        </th>*@
+                @Html.DisplayNameFor(model => model.AvatarID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsEnabled)
+            </th>*@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    var avatarURL = "https://api.adorable.io/avatars/80/" + item.Name;
-<tr>
-    <th>
-        <a href="@Url.Action("Details", "Player", new { id = item.Id })">
-            <img src=@avatarURL />
-        </a>        
-    </th>
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.BingoCount)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.LineCount)
-    </td>
-    @*<td>
-            @Html.DisplayFor(modelItem => item.RoomName)
-        </td>*@
-        @*<td>
-            @Html.DisplayFor(modelItem => item.IsEnabled)
-        </td>*@
+    @foreach (var item in Model)
+    {
+        var avatarURL = "https://api.adorable.io/avatars/80/" + item.Name;
+        <tr>
+            <th>
+                <a href="@Url.Action("Details", "Player", new { id = item.Id })">
+                    <img src=@avatarURL />
+                </a>
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BingoCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LineCount)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.RoomName)
+                </td>*@
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.IsEnabled)
+                </td>*@
 
-    @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>*@
-</tr>
-}
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>*@
+        </tr>
+    }
 
 </table>

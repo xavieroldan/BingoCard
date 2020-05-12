@@ -9,8 +9,8 @@
     <div class="col-md-12">
         @if (!String.IsNullOrEmpty(Model.RoomName))
         {
-            <p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("PlayerCard", "Card", new { id = Model.Id })">Play Bingo!!</a></p>
-            <p><a class="btn btn-danger btn-lg center-block" href="@Url.Action("RoomSelection", "Card", new { id = Model.Id })">Change Room</a></p>
+            <p><a class="btn btn-success btn-lg center-block" href="@Url.Action("PlayerCard", "Card", new { id = Model.Id })">Play Bingo!!</a></p>
+            <p><a class="btn btn-danger btn-lg center-block" href="@Url.Action("Index", "Player", new { id = Model.Id })">Back to List</a></p>
         }
         else
         {
@@ -39,9 +39,9 @@
 <hr />
 <div class="row">
     <div class="col-xs-6">
-        <p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("Edit", "Player", new { id = Model.Id })">Edit</a></p>
+        <p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("Edit", "Player", new { id = Model.Id })">Edit name</a></p>
     </div>
     <div class="col-xs-6">
-        <p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("Index", "Player", new { id = Model.Id })">Back to List</a></p>
+        <p><a class="btn btn-primary btn-lg center-block" href="@Url.Action("RoomSelection", "Card", new { id = Model.Id })">Change room</a></p>
     </div>
 </div>
