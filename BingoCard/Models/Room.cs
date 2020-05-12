@@ -11,11 +11,11 @@ namespace BingoCard.Models
         {
             Id = new Guid();
             Name = String.Empty;
-            Color = String.Empty;
+            Message = String.Empty;
         }
 
         public Guid Id { get; set; }
         public String Name { get; set; }
-        public String Color { get; set; }
+        public String Message { get; set; }
     }
 }

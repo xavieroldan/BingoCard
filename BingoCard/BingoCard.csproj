@@ -137,6 +137,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CardHelper.cs" />
+    <Compile Include="Migrations\202005121520571_1.cs" />
+    <Compile Include="Migrations\202005121520571_1.designer.cs">
+      <DependentUpon>202005121520571_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005121523551_2.cs" />
+    <Compile Include="Migrations\202005121523551_2.designer.cs">
+      <DependentUpon>202005121523551_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\DAOCard.cs" />
     <Compile Include="Models\Player.cs" />
@@ -289,6 +298,7 @@
     <Content Include="Views\Shared\_LayoutPlayer.cshtml" />
     <Content Include="Views\Card\RoomSelection.cshtml" />
     <Content Include="Views\Card\EditRoom.cshtml" />
+    <Content Include="Views\Shared\_RoomMsgPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -301,6 +311,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202005121520571_1.resx">
+      <DependentUpon>202005121520571_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005121523551_2.resx">
+      <DependentUpon>202005121523551_2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -29,16 +29,17 @@
                     <li>@Html.ActionLink("Play Anonymous", "Index", "Card")</li>
                     @*<li>@Html.ActionLink("Rooms", "RoomSelection", "Player", new { id = Model.Id })</li>*@
                 </ul>
+                
             </div>
         </div>        
         </div>
-        <div class="container body-content">
-            @RenderBody()
-            @*<hr />*@
-            <footer>
-                @*<p>&copy; @DateTime.Now.Year -  @System.Configuration.ConfigurationManager.AppSettings["AppName"]</p>*@
-            </footer>
-        </div>
+    <div class="container body-content">
+        @RenderBody()
+        @*<hr />*@
+        <footer>
+            @*<p>&copy; @DateTime.Now.Year -  @System.Configuration.ConfigurationManager.AppSettings["AppName"]</p>*@
+        </footer>
+    </div>
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
