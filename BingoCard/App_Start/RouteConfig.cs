@@ -16,7 +16,7 @@ namespace BingoCard
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Card", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Player", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
