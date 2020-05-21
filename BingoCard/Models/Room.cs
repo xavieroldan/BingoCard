@@ -13,9 +13,10 @@ namespace BingoCard.Models
             Name = String.Empty;
             Message = String.Empty;
         }
-
         public Guid Id { get; set; }
         public String Name { get; set; }
         public String Message { get; set; }
+        public Guid WinnerPlayer { get; set; }
+        public Guid LinePlayer { get; set; }
     }
 }
