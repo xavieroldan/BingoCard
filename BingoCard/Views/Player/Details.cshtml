@@ -21,7 +21,7 @@
 <h1></h1>
 <div class="row">
     <div class="col-md-12">
-        @if (Model.RoomId == Guid.Empty)
+        @if (Model.RoomId != Guid.Empty)
         {
             <p><a class="btn btn-success btn-lg center-block" href="@Url.Action("PlayerCard", "Card", new { id = Model.Id })">Play Bingo!!</a></p>
             <p><a class="btn btn-danger btn-lg center-block" href="@Url.Action("Index", "Player", new { id = Model.Id })">Back to List</a></p>
