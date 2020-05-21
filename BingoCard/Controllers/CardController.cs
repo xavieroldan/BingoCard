@@ -39,12 +39,7 @@ namespace BingoCard.Controllers
             myCard.Player = player;           
 
             return View(myCard);
-        }
-        [HttpPost]
-        public ActionResult PostCard(Card card)
-        {
-            return Json(new { url = "URL" });
-        }
+        }    
 
         public ActionResult RoomSelection(Guid? id)
         {
@@ -103,6 +98,29 @@ namespace BingoCard.Controllers
                 return RedirectToAction("PlayerCard", new { id = player.Id});
             }
             return View(player);
+        }
+        [HttpGet]
+        public void IsLine(Guid? id, Guid? playerId)
+        {
+            if (id != null && playerId != null)
+            {
+                Room room = db.Rooms.Find(id);
+                room.LinePlayer = playerId.Value;
+                room.Message = $"{db.Players.Find(playerId).Name} sing Line!";
+                db.SaveChanges();
+            }
+        }
+
+        [HttpPost]
+        public void IsBingo(Guid? id, Guid? playerId)
+        {
+            if (id != null && playerId != null)
+            {
+                Room room = db.Rooms.Find(id);
+                room.WinnerPlayer = playerId.Value;
+                room.Message = $"{db.Players.Find(playerId).Name} sing BINGO!";
+                db.SaveChanges();
+            }
         }
     }
 }
