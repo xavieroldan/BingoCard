@@ -1,11 +1,13 @@
 ﻿@model BingoCard.Models.Player
 @{ 
     string msg = string.Empty;
-    msg += "2 jugadores a 1 para bingo";
-
-
-
-
-
+    BingoCard.DataAccess.BingoCardDBContext db = new BingoCard.DataAccess.BingoCardDBContext();
+    BingoCard.Models.Room room = new BingoCard.Models.Room();
+    if (Model.RoomId == Guid.Empty) { msg = "Playing alone..."; }
+    else
+    {
+        room = db.Rooms.Find(Model.RoomId);
+        msg = room.Message;
+    }
 }
 <h3>@msg</h3>
