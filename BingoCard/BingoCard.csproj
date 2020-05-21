@@ -145,6 +145,10 @@
     <Compile Include="Migrations\202005121523551_2.designer.cs">
       <DependentUpon>202005121523551_2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005211315165_3.cs" />
+    <Compile Include="Migrations\202005211315165_3.designer.cs">
+      <DependentUpon>202005211315165_3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\DAOCard.cs" />
@@ -318,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005121523551_2.resx">
       <DependentUpon>202005121523551_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005211315165_3.resx">
+      <DependentUpon>202005211315165_3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

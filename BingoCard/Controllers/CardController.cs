@@ -75,27 +75,32 @@ namespace BingoCard.Controllers
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult EditRoom(Guid? id, string roomName="")
+        public ActionResult EditRoom(Guid? id, Guid? roomId)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Player player = db.Players.Find(id);
+            Room room = db.Rooms.Find(roomId);
+
             if (player == null)
             {
                 return HttpNotFound();
             }
             else
             {
-                player.RoomName = roomName;
+                if (roomId == Guid.Empty) player.RoomId = Guid.Empty;
+                else player.RoomId = roomId.Value;
             }
+
             if (ModelState.IsValid)
             {
                 db.Entry(player).State = EntityState.Modified;
                 db.SaveChanges();
-                if(!string.IsNullOrEmpty(player.RoomName)) return RedirectToAction("PlayerCard", new { id = player.Id});
-                return RedirectToAction("RoomSelection", new { id = player.Id});
+                if(player.RoomId==Guid.Empty) return RedirectToAction("PlayerCard", new { id = player.Id});
+                return RedirectToAction("PlayerCard", new { id = player.Id});
             }
             return View(player);
         }

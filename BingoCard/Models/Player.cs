@@ -25,7 +25,7 @@ namespace BingoCard.Models
         public int LineCount { get; set; }
         public string AvatarID { get; set; }
         public bool IsEnabled { get; set; }
-        public string RoomName { get; set; }
+        public Guid RoomId { get; set; }
         public bool IsEnableLine { get; set; }
     }
 }
