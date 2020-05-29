@@ -91,6 +91,8 @@
             //Verify Bingo (markedSquares >14)
             if (markedSquares > 14)
             {
+                //POST isBingo                   
+                isBingo(card.Player.RoomId, card.Player.Id);
                 //Block next lines msg
                 card.IsBingo = true;
                 //Set the alert msg
@@ -101,77 +103,75 @@
                 //Verify if Line ( Marked > 4)
                 if (card.MarkedSquares[posLine] > 4 && !card.IsLine)
                 {
-                    var data = {
-                        id: card.Player.RoomId,
-                        playerId: card.Player.Id
-                    }
-
-                    $.ajax({
-                        url: '/Card/IsLine/',
-                        type: 'GET',
-                        dataType: 'json',
-                        data: data,
-                        success: function (data) { },
-                            
-                        error: function (err) {
-                            alert("Error: " + err.responseText);
-                        }
-                    });
-
+                    //POST isLine                   
+                    isLine(card.Player.RoomId, card.Player.Id);
                     //Block next lines msg
                     card.IsLine = true;
                     //Show the alert msg
                     modalMsg="#line-popup";
                 }
-            }
-            //TODO: POST Controller call
+            }            
             //Show the popUp
             if (modalMsg)
             {
                 $(modalMsg).modal();
                 modalMsg = null;
             }
-            //POST Card
-            //postCard();
         }
     }
 
-    function postCard() {
-        //TODO: POST Controller call to set the model status
-        @*var data = JSON.stringify(card) // Investigat ethe change form here
+    function isLine(roomId, playerId)
+    {      
+        var data = {
+            roomId: roomId,
+            playerId: playerId
+        }
 
         $.ajax({
-        type: "POST",
-        url: '@Url.Action("PostCard", "Card")',
-        contentType: "application/json; charset=utf-8",
+            url: '/Card/IsLine/',
+            type: 'GET',
+            dataType: 'json',
             data: data,
-        dataType: "json",
-        success: function(result) {
-            alert(result);
-            window.locationre=result.url;
-            },
-        error: alert("Error")
-        });*@
+            success: function (data) { alert("200") },
+            error: function (xhr, ajaxOptions, thrownError) {
+                created = false;
+                switch (xhr.status) {
+                    case 204:
+                        alert("Player or Room not found.");
+                        break;
+                    default:
+                        output = "Server error, try later-" + xhr.ResponseText;
+                }
+            }
+        }); 
     }
 
-    function isLine()
-    {
+    function isBingo(roomId, playerId) {
+        var data = {
+            roomId: roomId,
+            playerId: playerId
+        }
 
-        @*$.ajax({
-        type: "POST",
-        url: '@Url.Action("IsLine", "Card"),
-        //contentType: "application/json; charset=utf-8",
-        data: data,
-        //dataType: "json",
-        success: function(result) {
-            alert(result);
-            window.locationre=result.url;
-            },
-        error: alert("Error")
-        });*@
+        $.ajax({
+            url: '/Card/IsBingo/',
+            type: 'GET',
+            dataType: 'json',
+            data: data,
+            success: function (data) { alert("200") },
+            error: function (xhr, ajaxOptions, thrownError) {
+                created = false;
+                switch (xhr.status) {
+                    case 204:
+                        alert("Player or Room not found.");
+                        break;
+                    default:
+                        output = "Server error, try later-" + xhr.ResponseText;
+                }
+            }
+        });
     }
 
-
+       
 
     </script>
 <style>

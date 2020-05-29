@@ -100,26 +100,38 @@ namespace BingoCard.Controllers
             return View(player);
         }
         [HttpGet]
-        public void IsLine(Guid? id, Guid? playerId)
+        public ActionResult IsLine(Guid? roomId, Guid? playerId)
         {
-            if (id != null && playerId != null)
+            try
             {
-                Room room = db.Rooms.Find(id);
+                Room room = db.Rooms.Find(roomId);
                 room.LinePlayer = playerId.Value;
                 room.Message = $"{db.Players.Find(playerId).Name} sing Line!";
                 db.SaveChanges();
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
+            catch (Exception)
+            {
+                //Player or Room not found
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+            } 
         }
 
-        [HttpPost]
-        public void IsBingo(Guid? id, Guid? playerId)
+        [HttpGet]
+        public ActionResult IsBingo(Guid? roomId, Guid? playerId)
         {
-            if (id != null && playerId != null)
+            try
             {
-                Room room = db.Rooms.Find(id);
+                Room room = db.Rooms.Find(roomId);
                 room.WinnerPlayer = playerId.Value;
                 room.Message = $"{db.Players.Find(playerId).Name} sing BINGO!";
                 db.SaveChanges();
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch (Exception)
+            {
+                //Player or Room not found
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
         }
     }
