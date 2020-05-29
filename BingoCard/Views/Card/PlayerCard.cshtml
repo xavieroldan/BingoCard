@@ -104,11 +104,13 @@
                 if (card.MarkedSquares[posLine] > 4 && !card.IsLine)
                 {
                     //POST isLine                   
-                    isLine(card.Player.RoomId, card.Player.Id);
-                    //Block next lines msg
-                    card.IsLine = true;
-                    //Show the alert msg
-                    modalMsg="#line-popup";
+                    var isVerified = isLine(card.Player.RoomId, card.Player.Id);
+                    if (isVerified==true) {
+                        //Block next lines msg
+                        card.IsLine = true;
+                        //Show the alert msg
+                        modalMsg = "#line-popup";
+                    }                    
                 }
             }            
             //Show the popUp
@@ -127,23 +129,33 @@
             playerId: playerId
         }
 
+        var isCorrect = true;
+
         $.ajax({
             url: '/Card/IsLine/',
             type: 'GET',
             dataType: 'json',
             data: data,
-            success: function (data) { alert("200") },
+            async: false,  
+            success: function (data) { isCorrect = true; },
             error: function (xhr, ajaxOptions, thrownError) {
-                created = false;
                 switch (xhr.status) {
                     case 204:
                         alert("Player or Room not found.");
                         break;
+                    case 409:
+                        alert("Other player already is Line.");
+                        break;
                     default:
-                        output = "Server error, try later-" + xhr.ResponseText;
+                        alert("Server error, try later-" + xhr.ResponseText);
                 }
-            }
-        }); 
+                isCorrect =  false;
+            },
+            complete: function (data) { return isCorrect; } 
+        });
+        return returnBool(isCorrect);
+        //Unable to change the return statment at the end of the function
+        //Always return an error..... deafult one....
     }
 
     function isBingo(roomId, playerId) {
@@ -157,19 +169,29 @@
             type: 'GET',
             dataType: 'json',
             data: data,
-            success: function (data) { alert("200") },
+            success: function (data) { alert("200"); },
             error: function (xhr, ajaxOptions, thrownError) {
-                created = false;
                 switch (xhr.status) {
                     case 204:
                         alert("Player or Room not found.");
                         break;
+                    case 409:
+                        alert("Other player already is Bingo."); 
+                        break;
                     default:
-                        output = "Server error, try later-" + xhr.ResponseText;
+                        alert("Server error, try later-" + xhr.ResponseText);
                 }
             }
         });
-    }
+        }
+
+    function returnBool(value) {
+            if (value == true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
        
 

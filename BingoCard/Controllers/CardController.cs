@@ -105,10 +105,18 @@ namespace BingoCard.Controllers
             try
             {
                 Room room = db.Rooms.Find(roomId);
-                room.LinePlayer = playerId.Value;
-                room.Message = $"{db.Players.Find(playerId).Name} sing Line!";
-                db.SaveChanges();
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
+                if (room.LinePlayer == Guid.Empty)
+                {
+                    room.LinePlayer = playerId.Value;
+                    room.Message = $"{db.Players.Find(playerId).Name} sing Line!";
+                    db.SaveChanges();
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                }
+                else
+                {
+                    //Other player already isLine
+                    return new HttpStatusCodeResult(HttpStatusCode.Conflict);
+                }                
             }
             catch (Exception)
             {
@@ -123,10 +131,19 @@ namespace BingoCard.Controllers
             try
             {
                 Room room = db.Rooms.Find(roomId);
-                room.WinnerPlayer = playerId.Value;
-                room.Message = $"{db.Players.Find(playerId).Name} sing BINGO!";
-                db.SaveChanges();
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
+                if (room.WinnerPlayer == Guid.Empty)
+                {
+                    room.WinnerPlayer = playerId.Value;
+                    room.Message = $"{db.Players.Find(playerId).Name} sing BINGO!";
+                    db.SaveChanges();
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                }
+                else
+                {
+                    //Other player already isBingo
+                    return new HttpStatusCodeResult(HttpStatusCode.Conflict);
+                }
+
             }
             catch (Exception)
             {
