@@ -36,7 +36,14 @@ namespace BingoCard.Controllers
             Card myCard = CardHelper.CreateCard();
 
             //Add the player Id
-            myCard.Player = player;           
+            myCard.Player = player;
+
+            //Update the Room Players Line and Bingo and Room message
+            Room myRoom = db.Rooms.Find(myCard.Player.RoomId);
+            myRoom.LinePlayer = Guid.Empty;
+            myRoom.WinnerPlayer = Guid.Empty;
+            myRoom.Message = $"{player.Name} joined the game";
+            db.SaveChanges();   
 
             return View(myCard);
         }    
