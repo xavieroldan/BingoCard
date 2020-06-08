@@ -91,28 +91,30 @@
             //Verify Bingo (markedSquares >14)
             if (markedSquares > 14)
             {
-                //POST isBingo                   
-                isBingo(card.Player.RoomId, card.Player.Id);
-                //Block next lines msg
-                card.IsBingo = true;
-                //Set the alert msg
-                modalMsg="#bingo-popup";
+                //POST isBingo
+                var isVerified = isBingo(card.Player.RoomId, card.Player.Id);
+                //Block next Bingo msg
+                if (isVerified == true) {
+                    card.IsBingo = true;
+                    //Set the alert msg
+                    modalMsg = "#bingo-popup";
+                }
             }
             else
             {
                 //Verify if Line ( Marked > 4)
                 if (card.MarkedSquares[posLine] > 4 && !card.IsLine)
                 {
-                    //POST isLine                   
+                    //POST isLine
                     var isVerified = isLine(card.Player.RoomId, card.Player.Id);
                     if (isVerified==true) {
                         //Block next lines msg
                         card.IsLine = true;
                         //Show the alert msg
                         modalMsg = "#line-popup";
-                    }                    
+                    }
                 }
-            }            
+            }
             //Show the popUp
             if (modalMsg)
             {
@@ -123,20 +125,19 @@
     }
 
     function isLine(roomId, playerId)
-    {      
+    {
         var data = {
             roomId: roomId,
             playerId: playerId
         }
 
-        var isCorrect = true;
+        var isCorrect = false;
 
         $.ajax({
             url: '/Card/IsLine/',
-            type: 'GET',
-            dataType: 'json',
+            type: 'POST',
             data: data,
-            async: false,  
+            async: false,
             success: function (data) { isCorrect = true; },
             error: function (xhr, ajaxOptions, thrownError) {
                 switch (xhr.status) {
@@ -144,18 +145,16 @@
                         alert("Player or Room not found.");
                         break;
                     case 409:
-                        alert("Other player already is Line.");
+                        //TODEBUG: alert("Other player already is Line.");
                         break;
                     default:
                         alert("Server error, try later-" + xhr.ResponseText);
                 }
                 isCorrect =  false;
             },
-            complete: function (data) { return isCorrect; } 
+            complete: function (data) { return isCorrect; }
         });
         return returnBool(isCorrect);
-        //Unable to change the return statment at the end of the function
-        //Always return an error..... deafult one....
     }
 
     function isBingo(roomId, playerId) {
@@ -164,25 +163,30 @@
             playerId: playerId
         }
 
+        var isCorrect = false;
+
         $.ajax({
             url: '/Card/IsBingo/',
-            type: 'GET',
-            dataType: 'json',
+            type: 'POST',
             data: data,
-            success: function (data) { alert("200"); },
+            async: false,
+            success: function (data) { isCorrect = true; },
             error: function (xhr, ajaxOptions, thrownError) {
                 switch (xhr.status) {
                     case 204:
                         alert("Player or Room not found.");
                         break;
                     case 409:
-                        alert("Other player already is Bingo."); 
+                        //TODEBUG: alert("Other player already is Bingo.");
                         break;
                     default:
                         alert("Server error, try later-" + xhr.ResponseText);
                 }
-            }
+                isCorrect = false;
+            },
+            complete: function (data) { return isCorrect; }
         });
+        return returnBool(isCorrect);
         }
 
     function returnBool(value) {
@@ -193,7 +197,34 @@
             }
         }
 
-       
+    //Update 4 in a second message
+    //https://stackoverflow.com/questions/28613630/how-do-i-refresh-a-partial-view-every-3-seconds-in-mvc-4
+
+    @*$(document).ready(function () {
+        function RefreshPartial() {
+            //this will wait 250 miliseconds and then fire the load partial function
+            setTimeout(function () {
+                loadPartialViewMessage(card.Player.RoomId);
+                //recall this function so that it will continue to loop
+                RefreshPartial();
+            }, 250);
+        }
+        //initialize the loop
+        RefreshPartial();
+    });
+
+        function loadPartialViewMessage(roomId) {
+                $.ajax({
+            url: '@Url.Action("RefreshMessage", "Card")',
+            type: 'post',
+            cache: false,
+            async: true,
+            data: { roomId: roomId },
+            success: function(result){
+                $('.divPartial').html(result);
+            }
+        });
+    }*@
 
     </script>
 <style>

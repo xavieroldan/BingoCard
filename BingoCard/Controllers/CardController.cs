@@ -106,7 +106,7 @@ namespace BingoCard.Controllers
             }
             return View(player);
         }
-        [HttpGet]
+        [HttpPost]
         public ActionResult IsLine(Guid? roomId, Guid? playerId)
         {
             try
@@ -132,7 +132,7 @@ namespace BingoCard.Controllers
             } 
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult IsBingo(Guid? roomId, Guid? playerId)
         {
             try
