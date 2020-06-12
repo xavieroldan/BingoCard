@@ -114,9 +114,17 @@ namespace BingoCard.Controllers
                 Room room = db.Rooms.Find(roomId);
                 if (room.LinePlayer == Guid.Empty)
                 {
+                    //Update room msg
                     room.LinePlayer = playerId.Value;
                     room.Message = $"{db.Players.Find(playerId).Name} sing Line!";
+
+                    //Increase player stads
+                    Player player = db.Players.Find(playerId);
+                    player.LineCount++;
+
+                    //Update DB
                     db.SaveChanges();
+
                     return new HttpStatusCodeResult(HttpStatusCode.OK);
                 }
                 else
@@ -140,8 +148,15 @@ namespace BingoCard.Controllers
                 Room room = db.Rooms.Find(roomId);
                 if (room.WinnerPlayer == Guid.Empty)
                 {
+                    //Update room msg
                     room.WinnerPlayer = playerId.Value;
                     room.Message = $"{db.Players.Find(playerId).Name} sing BINGO!";
+
+                    //Increase player stads
+                    Player player = db.Players.Find(playerId);
+                    player.BingoCount++;
+
+                    //Update DB
                     db.SaveChanges();
                     return new HttpStatusCodeResult(HttpStatusCode.OK);
                 }
