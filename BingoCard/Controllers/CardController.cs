@@ -173,5 +173,10 @@ namespace BingoCard.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
         }
+        [HttpGet]
+        public ActionResult GetMessageRoom (Player player)
+        {           
+            return PartialView("_RoomMsgPartial", player);
+        }
     }
 }

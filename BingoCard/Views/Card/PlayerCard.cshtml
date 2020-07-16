@@ -157,12 +157,11 @@
         return returnBool(isCorrect);
     }
 
-    function isBingo(roomId, playerId) {
+        function isBingo(roomId, playerId) {
         var data = {
             roomId: roomId,
             playerId: playerId
         }
-
         var isCorrect = false;
 
         $.ajax({
@@ -200,31 +199,41 @@
     //Update 4 times in a second room message
     //https://stackoverflow.com/questions/28613630/how-do-i-refresh-a-partial-view-every-3-seconds-in-mvc-4
 
-    @*$(document).ready(function () {
-        function RefreshPartial() {
-            //this will wait 250 miliseconds and then fire the load partial function
-            setTimeout(function () {
-                loadPartialViewMessage(card.Player.RoomId);
-                //recall this function so that it will continue to loop
-                RefreshPartial();
-            }, 250);
-        }
-        //initialize the loop
-        RefreshPartial();
-    });
+        setInterval(function () {
+            var player = card.Player;
+            var isCorrect = false;
 
-        function loadPartialViewMessage(roomId) {
-                $.ajax({
-            url: '@Url.Action("RefreshMessage", "Card")',
-            type: 'post',
+        $.ajax({
+            url: '/Card/GetMessageRoom/',
+            type: 'GET',
+            data: player,
+            async: false,
             cache: false,
-            async: true,
-            data: { roomId: roomId },
-            success: function(result){
-                $('.divPartial').html(result);
+            contentType: 'application/json',
+            datatype: "html",
+            success: function (data) {
+                isCorrect = true;
+                $('#roomMsg').empty();
+                $("#roomMsg").html(data);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                switch (xhr.status) {
+                    case 204:
+                        alert("Player not found.");
+                        break;
+                    case 409:
+                        //TODEBUG: alert("Other player already is Bingo.");
+                        break;
+                    default:
+                        alert("Server error, try later-" + xhr.ResponseText);
+                }
+                isCorrect = false;
+            },
+            complete: function (data) {                
+                return isCorrect;
             }
         });
-    }*@
+    }, 250);      
 
     </script>
 <style>
@@ -300,7 +309,7 @@
             </div>
         </div>
         <div class=" col-xs-6">
-            <div class="text-center bg-info">@Html.Partial("_RoomMsgPartial", Model.Player)</div>
+            <div class="text-center bg-info" id="roomMsg">@Html.Partial("_RoomMsgPartial", Model.Player)</div>
         </div>
         <div class="col-xs-1">
         </div>
