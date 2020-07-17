@@ -307,6 +307,7 @@
     <Content Include="Views\Card\RoomSelection.cshtml" />
     <Content Include="Views\Card\EditRoom.cshtml" />
     <Content Include="Views\Shared\_RoomMsgPartial.cshtml" />
+    <Content Include="Views\Shared\_WinnerMsgPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

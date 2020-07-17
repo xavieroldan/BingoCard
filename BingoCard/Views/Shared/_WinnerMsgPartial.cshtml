@@ -6,8 +6,13 @@
     if (Model.RoomId == Guid.Empty) { msg = "Playing alone..."; }
     else
     {
-        room = db.Rooms.Find(Model.RoomId);
-        msg = room.Message;
+
+        if (room.WinnerPlayer != Guid.Empty && (room.WinnerPlayer != Model.Id))
+        {
+            var winnerPlayer = db.Players.Find(room.WinnerPlayer);
+            msg = winnerPlayer.Name + " wins.";
+        }
+        else { msg="Someone wins:"+ room.WinnerPlayer; }
     }
 }
 <h3>@msg</h3>

@@ -97,7 +97,7 @@
                 if (isVerified == true) {
                     card.IsBingo = true;
                     //Set the alert msg
-                    modalMsg = "#bingo-popup";
+                    //modalMsg = "#bingo-popup";
                 }
             }
             else
@@ -194,15 +194,13 @@
             } else {
                 return false;
             }
-        }
+    }
 
-    //Update 4 times in a second room message
-    //https://stackoverflow.com/questions/28613630/how-do-i-refresh-a-partial-view-every-3-seconds-in-mvc-4
+    function getRoomMessage() {
+        var player = card.Player;
+        var isCorrect = false;
 
-        setInterval(function () {
-            var player = card.Player;
-            var isCorrect = false;
-
+        //Get message room
         $.ajax({
             url: '/Card/GetMessageRoom/',
             type: 'GET',
@@ -213,7 +211,10 @@
             datatype: "html",
             success: function (data) {
                 isCorrect = true;
+                
+                $('#roomMsgWinner').empty();
                 $('#roomMsg').empty();
+                $("#roomMsgWinner").html(data);
                 $("#roomMsg").html(data);
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -233,7 +234,49 @@
                 return isCorrect;
             }
         });
-    }, 250);
+    }
+
+    function detectBingoRoom() {
+        //Detect other player bingo
+        var playerRoomId = {
+            playerRoomId: card.Player.RoomId
+        };
+
+        $.ajax({
+            url: '/Card/CheckWinnerRoom/',
+            type: 'GET',
+            data: playerRoomId,
+            async: false,
+            datatype: "json",
+            success: function (data) {
+                if (data.result) {
+                    getRoomMessage();
+                    $("#end_game_bingo-popup").modal();
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                switch (xhr.status) {
+                    case 204:
+                        alert("Room winner not found.");
+                        break;
+                    case 409:
+                        //TODEBUG: alert("Other player already is Bingo.");
+                        break;
+                    default:
+                        alert("Server error, try later-" + xhr.ResponseText);
+                }
+            }
+        });
+    }
+
+    //Update 4 times in a second room message
+    //https://stackoverflow.com/questions/28613630/how-do-i-refresh-a-partial-view-every-3-seconds-in-mvc-4
+    setInterval(function () {
+
+        getRoomMessage();
+        detectBingoRoom();
+          
+        }, 500);  
 
 </script>
 <style>
@@ -378,8 +421,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                    <div class="text-center bg-info" id="roomMsg">@Html.Partial("_RoomMsgPartial", Model.Player)</div>
+                    <div class="text-center bg-info" id="roomMsgWinner">@Html.Partial("_WinnerMsgPartial", Model.Player)</div>
                     <div class="row">
                         <div class="col-md-12">
                             <p><a class="btn btn-success btn-lg center-block" href="@Url.Action("PlayerCard", "Card", new { id = Model.Player.Id })">New game</a></p>

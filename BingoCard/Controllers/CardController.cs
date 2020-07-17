@@ -178,12 +178,23 @@ namespace BingoCard.Controllers
         {           
             return PartialView("_RoomMsgPartial", player);
         }
+
         [HttpGet]
-        public bool CheckWinnerRoom(Guid playerRoomId)
-        {    
+        public ActionResult CheckWinnerRoom(Guid playerRoomId)
+        {
+            bool output = false;            
             Room room = db.Rooms.Find(playerRoomId);
-            if (room.WinnerPlayer != Guid.Empty) return true;
-            else return false;
+            if (room.WinnerPlayer != Guid.Empty)
+            {
+                output = true;
+            }
+            return Json(new { result = output }, JsonRequestBehavior.AllowGet);             
+        }
+
+        [HttpGet]
+        public ActionResult GetWinnerRoom(Player player)
+        {
+            return PartialView("_WinnerMsgPartial", player);
         }
     }
 }
