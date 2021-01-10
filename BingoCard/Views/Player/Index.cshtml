@@ -36,7 +36,7 @@
 
     @foreach (var item in Model)
     {
-        var avatarURL = "https://api.adorable.io/avatars/80/" + item.Name;
+        var avatarURL = "https://avatars.dicebear.com/4.5/api/bottts/" + System.Web.HttpUtility.UrlEncode(item.Name) + ".svg?h=80";
         <tr>
             <th>
                 <a href="@Url.Action("Details", "Player", new { id = item.Id })">

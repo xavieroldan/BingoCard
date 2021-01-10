@@ -116,7 +116,7 @@ namespace BingoCard.Controllers
                 {
                     //Update room msg
                     room.LinePlayer = playerId.Value;
-                    room.Message = $"{db.Players.Find(playerId).Name} sing Line!";
+                    room.Message = $"{db.Players.Find(playerId).Name} sang Line!";
 
                     //Increase player stads
                     Player player = db.Players.Find(playerId);
@@ -150,7 +150,7 @@ namespace BingoCard.Controllers
                 {
                     //Update room msg
                     room.WinnerPlayer = playerId.Value;
-                    room.Message = $"{db.Players.Find(playerId).Name} sing BINGO!";
+                    room.Message = $"{db.Players.Find(playerId).Name} sang BINGO!";
 
                     //Increase player stads
                     Player player = db.Players.Find(playerId);
