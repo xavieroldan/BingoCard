@@ -84,6 +84,13 @@ namespace BingoCard.Controllers
         {
             if (ModelState.IsValid)
             {
+                //load the scores before save the changes
+                //Player playerOld = db.Players.Find(player.Id);
+                Player playerOld = db.Players.AsNoTracking().Single(X => X.Id == player.Id);
+                player.LineCount = playerOld.LineCount;
+                player.BingoCount = playerOld.BingoCount;
+
+                //save the changes
                 db.Entry(player).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
