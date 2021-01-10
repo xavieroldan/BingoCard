@@ -324,7 +324,7 @@
     var avatarURL = "https://avatars.dicebear.com/4.5/api/bottts/" + System.Web.HttpUtility.UrlEncode(@Model.Player.Name) + ".svg?h=70";
     BingoCard.DataAccess.BingoCardDBContext db = new BingoCard.DataAccess.BingoCardDBContext();
     BingoCard.Models.Room room = new BingoCard.Models.Room();
-    if (Model.Player.RoomId != Guid.Empty) room = db.Rooms.Find(Model.Player.RoomId);
+    if (Model.Player.RoomId != Guid.Empty) { room = db.Rooms.Find(Model.Player.RoomId); }
 }
 <h6></h6>
 <div class="container">
