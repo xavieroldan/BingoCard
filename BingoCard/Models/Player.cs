@@ -19,8 +19,13 @@ namespace BingoCard.Models
         public Guid Id { get; set; }
         [StringLength(15, MinimumLength = 3)]
         [Required]
-
-        public string Name { get; set; }
+        private string _name;
+        public string Name
+        {
+            //get { return System.Web.HttpUtility.UrlEncode(this._name); }
+            get { return _name; }
+            set { _name = value; }
+        }
         public int BingoCount { get; set; }
         public int LineCount { get; set; }
         public string AvatarID { get; set; }

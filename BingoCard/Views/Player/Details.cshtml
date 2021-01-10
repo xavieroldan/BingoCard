@@ -35,7 +35,7 @@
 <hr />
 <div class="row">
     <div class="col-xs-6" align="center">
-        @{var avatarURL = "https://api.adorable.io/avatars/150/" + Model.Name;}
+        @{var avatarURL = "https://avatars.dicebear.com/4.5/api/bottts/" + System.Web.HttpUtility.UrlEncode(Model.Name) + ".svg?h=150";}
         <img src=@avatarURL />
 
     </div>

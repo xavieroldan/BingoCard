@@ -321,7 +321,7 @@
 </style>
 <!-- Card header -->
 @{
-    var avatarURL = "https://api.adorable.io/avatars/70/" + @Model.Player.Name;
+    var avatarURL = "https://avatars.dicebear.com/4.5/api/bottts/" + System.Web.HttpUtility.UrlEncode(@Model.Player.Name) + ".svg?h=70";
     BingoCard.DataAccess.BingoCardDBContext db = new BingoCard.DataAccess.BingoCardDBContext();
     BingoCard.Models.Room room = new BingoCard.Models.Room();
     if (Model.Player.RoomId != Guid.Empty) room = db.Rooms.Find(Model.Player.RoomId);

@@ -6,12 +6,12 @@
 }
 
 @{
-    var avatarURLTitle = "https://api.adorable.io/avatars/40/" + @Model.Name;
-}
+        var avatarURLTitle = "https://avatars.dicebear.com/4.5/api/bottts/" + System.Web.HttpUtility.UrlEncode(@Model.Name) + ".svg?h=40";
+    }
 
     <h2>
         Room Selection for <img src=@avatarURLTitle /> @Model.Name
-        
+
     </h2>
 <h5>Click on the room name to enter:</h5>
 <hr />
@@ -51,7 +51,7 @@
                         }
                         if (room.Id == player.RoomId)
                         {
-                            var avatarURL = "https://api.adorable.io/avatars/40/" + player.Name;
+                            var avatarURL = "https://avatars.dicebear.com/4.5/api/bottts/" + System.Web.HttpUtility.UrlEncode(player.Name) + ".svg?h=40";
                             var bgColor = "bg-warning";
                             var icon = "";
                             if (@Model.Id == player.Id)
@@ -76,7 +76,7 @@
                 <p><a class="btn btn-default btn-lg center-block" href="@Url.Action("EditRoom", "Card", new { id = Model.Id, roomId = Guid.Empty })">Unassigned</a></p>
                 @foreach (var player in playersNoRooms)
                 {
-                    var avatarURL = "https://api.adorable.io/avatars/40/" + player.Name;
+                    var avatarURL = "https://avatars.dicebear.com/4.5/api/bottts/" + System.Web.HttpUtility.UrlEncode(player.Name) + ".svg?h=40";
                     <p><img src=@avatarURL />@player.Name</p>
                 }
                 <hr />
